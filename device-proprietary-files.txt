@@ -13,7 +13,6 @@ etc/firmware/wcnss.b04
 etc/firmware/wcnss.b05
 etc/firmware/wcnss.mdt
 bin/btnvtool
-bin/hci_qcomm_init
 bin/sec-ril
 lib/libimage-jpeg-dec-omx-comp.so
 lib/libimage-jpeg-enc-omx-comp.so
@@ -25,4 +24,6 @@ lib/hw/camera.msm8960.so:lib/hw/vendor-camera.msm8960.so
 lib/hw/sensors.msm8960.so
 lib/libmmjpeg.so
 lib/liboemcamera.so
+lib/libril-qc-qmi-1.so
+lib/libril.so
 vendor/firmware/libpn544_fw.so
