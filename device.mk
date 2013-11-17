@@ -50,6 +50,7 @@ PRODUCT_PACKAGES += \
     camera.MSM8960
 
 # Wifi firmware
+$(call inherit-product, device/samsung/apexqtmo/wlan_firmware.mk)
 PRODUCT_PACKAGES += \
     WCNSS_cfg.dat \
     WCNSS_qcom_cfg.ini \
