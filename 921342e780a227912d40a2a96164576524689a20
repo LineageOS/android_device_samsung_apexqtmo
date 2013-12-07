@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa80f949_de5e0276",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5589
+      },
+      "writtenOn": "2013-12-07T12:50:06Z",
+      "side": 1,
+      "message": "probably need to delete the package declaration here. probably in expressatt as well.",
+      "revId": "921342e780a227912d40a2a96164576524689a20",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
