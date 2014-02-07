@@ -23,14 +23,14 @@
 # inherit from the proprietary version
 -include vendor/samsung/apexqtmo/BoardConfigVendor.mk
 # inherit from common d2
--include device/samsung/d2-common/BoardConfigCommon.mk
+-include device/samsung/d2lte/BoardConfigCommon.mk
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := apexqtmo
 TARGET_BOARD_INFO_FILE ?= device/samsung/apexqtmo/board-info.txt
 
 # Insert contents of file near end of updater-script
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./build/tools/releasetools/ota_from_target_files -e ./device/samsung/d2-common/apexq-common/installer_extra
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./build/tools/releasetools/ota_from_target_files -e ./device/samsung/d2lte/apexq-common/installer_extra
 
 # Kernel
 TARGET_KERNEL_CONFIG        := cyanogen_apexq_defconfig
