@@ -55,5 +55,5 @@ PRODUCT_PACKAGES += \
     WCNSS_qcom_cfg.ini \
     WCNSS_qcom_wlan_nv.bin_
 
-# Inherit from d2-common
-$(call inherit-product, device/samsung/d2-common/d2-common.mk)
+# d2-common
+$(call inherit-product, device/samsung/d2lte/d2-common.mk)
