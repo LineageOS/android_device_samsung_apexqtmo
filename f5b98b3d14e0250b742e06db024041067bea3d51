@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fade3982_abca804d",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8640
+      },
+      "writtenOn": "2014-02-16T23:58:50Z",
+      "side": 1,
+      "message": "TARGET_UNIFIED_DEVICE :\u003d  \n\nShould be here as well or you won\u0027t get fingerprint etc",
+      "revId": "f5b98b3d14e0250b742e06db024041067bea3d51",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
