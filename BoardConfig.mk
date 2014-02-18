@@ -37,11 +37,6 @@ TARGET_KERNEL_CONFIG        := cyanogen_apexq_defconfig
 BOARD_MKBOOTIMG_ARGS        := --ramdisk_offset 0x01500000
 TARGET_KERNEL_SOURCE        := kernel/samsung/d2
 
-# We are not a unified device :(
-TARGET_UNIFIED_DEVICE :=
-TARGET_INIT_VENDOR_LIB :=
-TARGET_LIBINIT_DEFINES_FILE :=
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/apexqtmo/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF :=
