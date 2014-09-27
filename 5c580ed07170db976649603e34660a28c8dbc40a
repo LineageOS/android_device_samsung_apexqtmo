@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1b2928_98ded56b",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2014-09-27T11:38:29Z",
+      "side": 1,
+      "message": "Can probably leave this in msm8960-common, this is a 8960 platform thing.",
+      "revId": "5c580ed07170db976649603e34660a28c8dbc40a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
