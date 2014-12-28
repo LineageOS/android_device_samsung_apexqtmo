@@ -25,6 +25,7 @@
 
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1258291200
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5515509760
+TARGET_RECOVERY_FSTAB := device/samsung/apexqtmo/rootdir/etc/fstab.qcom
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/apexqtmo/include
 
