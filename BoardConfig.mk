@@ -20,16 +20,13 @@
 # definition file).
 #
 
+# inherit from the proprietary version
+-include vendor/samsung/apexqtmo/BoardConfigVendor.mk
+
 # inherit from common msm8960
 -include device/samsung/msm8960-common/BoardConfigCommon.mk
 
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1258291200
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 5515509760
-
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/apexqtmo/include
-
-# inherit from the proprietary version
--include vendor/samsung/apexqtmo/BoardConfigVendor.mk
+TARGET_SPECIFIC_HEADER_PATH += device/samsung/apexqtmo/include
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := apexqtmo
@@ -43,8 +40,9 @@ TARGET_KERNEL_CONFIG := cyanogen_apexq_defconfig
 
 # Audio
 BOARD_HAVE_DOCK_USBAUDIO := true
-BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
+BOARD_HAVE_SAMSUNG_CSDCLIENT := true
 BOARD_USES_SEPERATED_AUDIO_INPUT := true
+BOARD_USES_SEPERATED_HEADSET_MIC := true
 BOARD_USES_SEPERATED_VOICE_SPEAKER := true
 BOARD_USES_SEPERATED_VOIP := true
 
@@ -56,23 +54,65 @@ QCOM_BT_USE_SMD_TTY := true
 
 # Camera
 TARGET_NEED_DISABLE_AUTOFOCUS := true
-TARGET_NEED_DISABLE_FACE_DETECTION_BOTH_CAMERAS := true
 TARGET_NEED_PREVIEW_SIZE_FIXUP := true
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_DISPLAY_INSECURE_MM_HEAP :=
+
+# GPS
+TARGET_NO_RPC := true
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_CACHEIMAGE_PARTITION_SIZE := 880803840
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1258291200
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5515509760
+TARGET_RECOVERY_FSTAB := device/samsung/apexqtmo/rootdir/etc/fstab.qcom
+TARGET_USERIMAGES_USE_F2FS := true
+
+# RIL
+BOARD_RIL_CLASS := ../../../device/samsung/apexqtmo/ril
+
+# Selinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/apexqtmo/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    geomagneticd.te
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
+TARGET_USES_WCNSS_CTRL := true
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_PROVIDES_WCNSS_QMI := true
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/prima_wlan.ko"
 WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/prima_wlan/parameters/fwpath"
-WIFI_DRIVER_MODULE_NAME     := "prima_wlan"
 WIFI_DRIVER_FW_PATH_STA     := "sta"
 WIFI_DRIVER_FW_PATH_AP      := "ap"
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/apexqtmo
+
+# TWRP
+DEVICE_RESOLUTION := 800x480
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+#RECOVERY_VARIANT := twrp
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+RECOVERY_TOUCHSCREEN_SWAP_XY := true
+RECOVERY_TOUCHSCREEN_FLIP_Y := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_THEME := landscape_hdpi

@@ -1,0 +1,2 @@
+# Sensors
+/system/bin/geomagneticd                    u:object_r:geomagneticd_exec:s0

@@ -1,21 +1,37 @@
-# system.prop for apexqtmo
+# system.prop for SGH-I750
 #
 
 # audio
 persist.audio.fluence.mode=none
 persist.audio.handset.mic=analog
 ro.qc.sdk.audio.fluencetype=none
+persist.audio.vr.enable=false
+audio.offload.disable=1
 
 # bluetooth
 ro.qualcomm.bt.hci_transport=smd
 
+# wifi
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=15
+
 # radio
 rild.libargs=-d /dev/smd0
-rild.libpath=/system/lib/libril-qc-qmi-1.so
-ro.telephony.default_network=9
-ro.telephony.ril_class=SamsungQualcommRIL
+rild.libpath=/system/lib/libsec-ril.so
+ro.telephony.default_network=0
+ro.telephony.ril_class=apexqRIL
 ro.ril.gprsclass=10
 ro.ril.hsxpa=1
 ro.ril.transmitpower=true
 ro.use_data_netmgrd=true
-telephony.lteOnGsmDevice=1
+telephony.lteOnGsmDevice=0
+
+# sensors
+ro.yas.enable=true
+
+# gps
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.izat.premium_enabled=0 \
+    ro.qc.sdk.izat.service_mask=0x0 \
+    persist.gps.qc_nlp_in_use=0 \
+    ro.gps.agps_provider=1

@@ -28,25 +28,35 @@ PRODUCT_PROPERTY_OVERRIDES += ro.sf.lcd_density=240
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
-# Ramdisk
-PRODUCT_PACKAGES += \
-    50bluetooth \
-    60compass \
-    init.target.rc \
-    wifimac.sh
-
 # Audio configuration
 PRODUCT_COPY_FILES += \
     device/samsung/apexqtmo/audio/snd_soc_msm_2x:system/etc/snd_soc_msm/snd_soc_msm_2x \
     device/samsung/apexqtmo/audio/audio_policy.conf:system/etc/audio_policy.conf
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8960 \
+    libgps.utils \
+    libloc_core \
+    libloc_eng
+
+PRODUCT_COPY_FILES += \
+    device/samsung/apexqtmo/gps/etc/gps.conf:system/etc/gps.conf \
+    device/samsung/apexqtmo/gps/etc/sap.conf:system/etc/sap.conf
+
 # Keylayout
 PRODUCT_COPY_FILES += \
+    device/samsung/apexqtmo/keyboard/fsa9485.kl:system/usr/keylayout/fsa9485.kl \
     device/samsung/apexqtmo/keyboard/sec_keypad.kl:system/usr/keylayout/sec_keypad.kl \
     device/samsung/apexqtmo/keyboard/sec_keypad.kcm:system/usr/keychars/sec_keypad.kcm \
     device/samsung/apexqtmo/keyboard/sec_keypad.idc:system/usr/idc/sec_keypad.idc \
     device/samsung/apexqtmo/keyboard/sec_keys.kl:system/usr/keylayout/sec_keys.kl \
-    device/samsung/apexqtmo/keyboard/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+    device/samsung/apexqtmo/keyboard/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
+    device/samsung/apexqtmo/keyboard/sii9234_rcp.kl:system/usr/keylayout/sii9234_rcp.kl
 
 PRODUCT_PACKAGES += \
     ApexQKeypad
@@ -59,15 +69,37 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/apexqtmo/media/media_profiles.xml:system/etc/media_profiles.xml
 
+# NFC
+PRODUCT_PACKAGES += \
+    libnfc \
+    libnfc_jni \
+    Nfc \
+    Tag \
+    com.android.nfc_extras
+
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
+else
+    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access_debug.xml
+endif
+PRODUCT_COPY_FILES += \
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+
+# Wifi
 # Wifi
 PRODUCT_COPY_FILES += \
     device/samsung/apexqtmo/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/samsung/apexqtmo/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    device/samsung/apexqtmo/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/samsung/apexqtmo/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
+    libwcnss_qmi \
+    wcnss_service
     WCNSS_cfg.dat \
-    WCNSS_qcom_cfg.ini \
     WCNSS_qcom_wlan_nv.bin
+
+PRODUCT_PACKAGES += \
+    libnetcmdiface
 
 # common msm8960
 $(call inherit-product, device/samsung/msm8960-common/msm8960.mk)
